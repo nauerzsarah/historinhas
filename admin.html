@@ -7,30 +7,5 @@
     <div id="status"></div>
 </div>
 
-<script type="module">
-    import { db } from './js/firebase-config.js';
-    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    document.getElementById('btn-upload').onclick = async () => {
-        const file = document.getElementById('input-excel').files[0];
-        const reader = new FileReader();
-
-        reader.onload = async (e) => {
-            const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, {type: 'array'});
-            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-            const listaHistorias = XLSX.utils.sheet_to_json(firstSheet);
-
-            // Envia cada linha do Excel (colunas: titulo, conteudo) para o Firebase
-            for (const historia of listaHistorias) {
-                await addDoc(collection(db, "historias"), {
-                    titulo: historia.titulo,
-                    conteudo: historia.conteudo,
-                    dataCriacao: new Date()
-                });
-            }
-            alert("Todas as histórias foram enviadas!");
-        };
-        reader.readAsArrayBuffer(file);
-    };
-</script>
+<script type="module" src="js/admin.js"></script>
+  

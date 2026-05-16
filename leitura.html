@@ -25,51 +25,6 @@
             </div>
     </div>
 
-    <script type="module">
-        import { db } from './js/firebase-config.js';
-        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        // Pega o ID da história pela URL (ex: leitura.html?id=123)
-        const params = new URLSearchParams(window.location.search);
-        const historiaId = params.get('id');
-
-        async function carregarHistoria() {
-            const docRef = doc(db, "historias", historiaId);
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-                const dados = docSnap.data();
-                document.getElementById('titulo-historia').innerText = dados.titulo;
-                prepararTexto(dados.conteudo);
-            }
-        }
-
-        function prepararTexto(texto) {
-            const container = document.getElementById('texto-leitura');
-            const palavras = texto.split(/\s+/);
-            container.innerHTML = palavras.map((p, i) => `<span class="palavra" id="p-${i}">${p}</span>`).join(' ');
-            
-            configurarAudio(texto, palavras);
-        }
-
-        function configurarAudio(texto, palavras) {
-            const btn = document.getElementById('btn-ouvir');
-            btn.onclick = () => {
-                const utterance = new SpeechSynthesisUtterance(texto);
-                utterance.lang = 'pt-BR';
-                utterance.rate = document.getElementById('velocidade').value;
-
-                utterance.onboundary = (event) => {
-                    if (event.name === 'word') {
-                        // Lógica de destaque baseada no charIndex (como no exemplo anterior)
-                        // ... (mesma lógica do protótipo v1 corrigida para spans)
-                    }
-                };
-                window.speechSynthesis.speak(utterance);
-            };
-        }
-
-        carregarHistoria();
-    </script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicativo de Leitura - Escolha sua História</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Minhas Histórias 📚</h1>
+            <p>Selecione uma história abaixo para começar a ler e ouvir.</p>
+        </header>
+
+        <!-- Lista onde as histórias serão injetadas -->
+        <div id="lista-historias" class="grid-historias">
+            <p class="carregando">Carregando histórias disponíveis...</p>
+        </div>
+        
+        <footer>
+            <a href="admin.html" class="btn-admin">Ir para Painel Admin ⚙️</a>
+        </footer>
+    </div>
+
+    <script type="module">
+        import { db } from './js/firebase-config.js';
+        import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        async function listarHistorias() {
+            const listaContainer = document.getElementById('lista-historias');
+            
+            try {
+                // Busca as histórias ordenadas pelas mais recentes
+                const q = query(collection(db, "historias"), orderBy("dataCriacao", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                if (querySnapshot.empty) {
+                    listaContainer.innerHTML = '<p class="aviso">Nenhuma história encontrada. Vá ao Painel Admin para enviar um Excel!</p>';
+                    return;
+                }
+
+                listaContainer.innerHTML = ''; // Limpa o texto de "Carregando"
+
+                querySnapshot.forEach((doc) => {
+                    const dados = doc.data();
+                    const id = doc.id;
+
+                    // Cria o card de cada história
+                    const card = document.createElement('div');
+                    card.className = 'card-historias';
+                    card.innerHTML = `
+                        <h3>${dados.titulo}</h3>
+                        <p>${dados.conteudo.substring(0, 100)}...</p>
+                        <a href="leitura.html?id=${id}" class="btn-ler">Ler Agora 📖</a>
+                    `;
+                    listaContainer.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("Erro ao buscar dados: ", error);
+                listaContainer.innerHTML = '<p class="erro">Erro ao carregar histórias. Verifique as configurações do Firebase.</p>';
+            }
+        }
+
+        // Executa a função ao carregar a página
+        listarHistorias();
+    </script>
+</body>
+</html>

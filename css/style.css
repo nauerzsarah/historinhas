@@ -1,0 +1,150 @@
+/* Configurações Gerais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Grid e Cards da Home */
+.grid-historias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card-historias {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+
+.card-historias:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.card-historias h3 {
+    margin-bottom: 10px;
+    color: #1e293b;
+}
+
+.card-historias p {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 15px;
+}
+
+/* Botões */
+button, .btn-ler, .btn-primary, .btn-admin {
+    display: inline-block;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+button:hover, .btn-ler:hover, .btn-primary:hover {
+    background-color: #2563eb;
+}
+
+.btn-admin {
+    background-color: #64748b;
+    font-size: 14px;
+}
+.btn-admin:hover {
+    background-color: #475569;
+}
+
+/* Página de Leitura */
+.player-controls {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.leitura-box {
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    color: #1e293b;
+    text-align: justify;
+    padding: 15px 0;
+}
+
+/* O Efeito do Destaque */
+.palavra {
+    display: inline-block;
+    margin-right: 4px;
+    padding: 0 2px;
+    border-radius: 4px;
+    transition: all 0.1s ease;
+}
+
+.destaque {
+    background-color: #fde047; /* Amarelo Macio */
+    color: #000;
+    font-weight: 600;
+    transform: scale(1.08);
+}
+
+/* Área de Admin */
+.admin-box {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.admin-box input[type="file"] {
+    margin: 20px 0;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 6px;
+}
+
+#status {
+    margin-top: 15px;
+    font-weight: bold;
+}

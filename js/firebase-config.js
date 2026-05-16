@@ -2,12 +2,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "SUA_API_KEY",
-    authDomain: "SEU_PROJETO.firebaseapp.com",
-    projectId: "SEU_PROJETO",
-    storageBucket: "SEU_PROJETO.appspot.com",
-    messagingSenderId: "ID",
-    appId: "APP_ID"
+    apiKey: "AIzaSyDhxLt_kdbuobSjLw7OcD-SqUxehRS_ZRA",
+    authDomain: "historias-e-leitura.firebaseapp.com",
+    projectId: "historias-e-leitura",
+    storageBucket: "historias-e-leitura.firebasestorage.app",
+    messagingSenderId: "301281175179",
+    appId: "1:301281175179:web:c0bcce077c9d608fef568e"
 };
 
 const app = initializeApp(firebaseConfig);
